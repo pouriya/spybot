@@ -34,6 +34,9 @@ Place your token in above example and save it in a file named `echobot.py`, then
 ```sh
 /path/to/your/echobot $ python3.5 echobot.py
 INFO:requests.packages.urllib3.connectionpool:Starting new HTTPS connection (1): bot.sapp.ir
+
+INFO:spybot.api:got new event type -> START, from -> LC00qzKjtwPTJe352hS..., timestamp -> 1538919421721
+
 INFO:spybot.api:got new event type -> TEXT, from -> LC00qzKjtwPTJe352hS..., timestamp -> 1538918596120, body -> Hello😍👍
 
 INFO:spybot.api:event handler function yielded reply with type -> TEXT, to -> LC00qzKjtwPTJe352hS..., body -> H
