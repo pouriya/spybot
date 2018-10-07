@@ -1,6 +1,9 @@
 import requests
 import json
 import logging
+from inspect import getfullargspec
+from os.path import join
+from os import getcwd
 
 from spybot.reply import is_reply
 from spybot.event import parse
@@ -25,10 +28,7 @@ class Bot:
         self.get_retry_count      = 0
         self.send_retry_max       = send_retry_max
         self.send_retry_count     = 0
-        if event_handler:
-            self.event_handler = event_handler
-        else:
-            self.event_handler = self.handle_event
+        self.event_handler        = event_handler
 
 
     def _handle_get_retry(self, exception):
@@ -54,7 +54,7 @@ class Bot:
             else:
                 req = requests.get(URI, stream=True)
         except Exception as error:
-            logger.warning('could not make HTTP request to {!r}'.format(self.BASE_URL))
+            logger.error('could not make HTTP request to {!r}'.format(self.BASE_URL))
             self._handle_get_retry(error)
             return
         if req.status_code == 200:
@@ -67,12 +67,12 @@ class Bot:
                         continue
                     logger.debug('skipping chunk')
             except requests.exceptions.ConnectionError as error:
-                logger.warning('could not read stream chunks')
+                logger.error('could not read stream chunks')
                 req.close()
                 self._handle_get_retry(error)
                 return
         else:
-            logger.warning('got HTTP status code {!r}'.format(req.status_code))
+            logger.error('got HTTP status code {!r}'.format(req.status_code))
             req.close()
             self._handle_get_retry(error)
             return
@@ -93,9 +93,21 @@ class Bot:
                 return
             raise error
         logger.info('got new event {}'.format(event))
+        
+        if event.is_file:
+            event = self._add_download_method(event)
 
         logger.debug('running event handler function {}'.format(event_handler))
-        result = event_handler(event)
+        if not event_handler:
+            result = self.handle_event(event)
+        else:
+            argument_count = len(getfullargspec(event_handler).args)
+            if argument_count == 1:
+                result = event_handler(event)
+            elif argument_count == 2:
+                result = event_handler(self, event)
+            else:
+                raise ValueError('event handler function {!r} MUST accept one or two argument(s)'.format(event_handler))
 
         if result == None:
             logger.debug('event handler function does not yield anything')
@@ -114,6 +126,36 @@ class Bot:
             return
         raise ValueError('event handler function {} does not yield valid return value'.format(event_handler))
 
+
+    def _add_download_method(self, event):
+        URL  = self.get_download_url(event.url)
+        name = event.name
+        def download(path=None):
+            try:
+                req = requests.get(URL)
+            except requests.exceptions.ConnectionError as error:
+                logger.error('could not get file {!r}'.format(name))
+                req.close()
+                self._handle_get_retry(error)
+                return False
+            if path == None:
+                path = getcwd()
+            filename = join(path, name)
+            try:
+                fd = open(filename, 'wb')
+                fd.write(req.content)
+                logger.error('file {!r} downloaded successfully and saved to {}'.format(name, path))
+                return True
+            except Exception as error:
+                logger.error('could not write file contents to {!r}'.format(filename))
+                raise
+        event.download = download
+        return event
+
+
+    def get_download_url(self, event_url):
+        URL = "{}/{}/downloadFile/{}".format(self.BASE_URL, self.token, event_url) 
+        return URL
 
     def _handle_reply(self, reply):
         reply = reply.reply
@@ -176,23 +218,3 @@ class Bot:
 
     def handle_event(self, event):
         pass
-
-"""
-
-import logging
-logging.basicConfig(level=logging.INFO)
-import spybot
-
-class EchoBot(spybot.Bot):
-    def handle_event(self, event):
-        if event.is_text:
-            replies = []
-            for char in event.body:
-                reply = spybot.reply.Text(event.sender, char)
-                replies.append(reply)
-            return replies
-
-bot = EchoBot("Xat7c35VBTsCxiFlPpkYTEMRrz4521v3z1U7MpO9HVfTpF7Nk7YR0yMQd3qALmvZiUwpsE6gVXF0sCsxTFGwiUqe-pFzmrzMTmeex2-8kabMI8LRz0vy7lkvTXkb9f3iYrk_-2PAC8kAQHZQ", event_handler=cb)
-bot.run()
-
-"""
