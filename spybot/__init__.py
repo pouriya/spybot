@@ -1,12 +1,10 @@
 from __future__ import absolute_import
 
+
+__version__     = "18.10.7"
+__description__ = "Soroush python bot  wrapper"
+__author__      = "Pouriya Jahanbakhsh"
+__email__       = "pouriya.jahanbakhsh@gmail.com"
+
+
 from .api import Bot
-#from .reply import (Text           as TextReply
-#                   ,Image          as ImageReply
-#                   ,Gif            as GifReply
-#                   ,Video          as VideoReply
-#                   ,Attachment     as AttachmentReply
-#                   ,PushToTalk     as PushToTalkReply
-#                   ,Location       as LocationReply
-#                   ,Contact        as ContactReply
-#                   ,KeyboardChange as KeyboardChangeReply)
