@@ -74,4 +74,4 @@ INFO:spybot.api:sent message successfully
 ```
 
 For more information see [Wiki](https://github.com/Pouriya-Jahanbakhsh/spybot/wiki).  
-For contribution see [contribution guide]().
+For contribution see [contribution guide](https://github.com/Pouriya-Jahanbakhsh/spybot/blob/master/CONTRIBUTING.md).
