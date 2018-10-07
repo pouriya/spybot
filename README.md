@@ -39,35 +39,35 @@ INFO:requests.packages.urllib3.connectionpool:Starting new HTTPS connection (1):
 ![spybot_screenshot](https://user-images.githubusercontent.com/20663776/46582566-80a3d500-ca38-11e8-9ab8-3f20df22de3d.jpg)
 
 ```
-INFO:spybot.api:got new event type -> START, from -> LC00qzKjtwPTJe352hS..., timestamp -> 1538919421721
+INFO:spybot.api:got new event type -> START, from -> LC00..., timestamp -> 1538919421721
 
-INFO:spybot.api:got new event type -> TEXT, from -> LC00qzKjtwPTJe352hS..., timestamp -> 1538918596120, body -> Hello😍👍
+INFO:spybot.api:got new event type -> TEXT, from -> LC00..., timestamp -> 1538918596120, body -> Hello😍👍
 
-INFO:spybot.api:event handler function yielded reply with type -> TEXT, to -> LC00qzKjtwPTJe352hS..., body -> H
+INFO:spybot.api:event handler function yielded reply with type -> TEXT, to -> LC00..., body -> H
 INFO:requests.packages.urllib3.connectionpool:Starting new HTTPS connection (1): bot.sapp.ir
 INFO:spybot.api:sent message successfully
 
-INFO:spybot.api:event handler function yielded reply with type -> TEXT, to -> LC00qzKjtwPTJe352hS..., body -> e
+INFO:spybot.api:event handler function yielded reply with type -> TEXT, to -> LC00..., body -> e
 INFO:requests.packages.urllib3.connectionpool:Starting new HTTPS connection (1): bot.sapp.ir
 INFO:spybot.api:sent message successfully
 
-INFO:spybot.api:event handler function yielded reply with type -> TEXT, to -> LC00qzKjtwPTJe352hS..., body -> l
+INFO:spybot.api:event handler function yielded reply with type -> TEXT, to -> LC00..., body -> l
 INFO:requests.packages.urllib3.connectionpool:Starting new HTTPS connection (1): bot.sapp.ir
 INFO:spybot.api:sent message successfully
 
-INFO:spybot.api:event handler function yielded reply with type -> TEXT, to -> LC00qzKjtwPTJe352hS..., body -> l
+INFO:spybot.api:event handler function yielded reply with type -> TEXT, to -> LC00..., body -> l
 INFO:requests.packages.urllib3.connectionpool:Starting new HTTPS connection (1): bot.sapp.ir
 INFO:spybot.api:sent message successfully
 
-INFO:spybot.api:event handler function yielded reply with type -> TEXT, to -> LC00qzKjtwPTJe352hS..., body -> o
+INFO:spybot.api:event handler function yielded reply with type -> TEXT, to -> LC00..., body -> o
 INFO:requests.packages.urllib3.connectionpool:Starting new HTTPS connection (1): bot.sapp.ir
 INFO:spybot.api:sent message successfully
 
-INFO:spybot.api:event handler function yielded reply with type -> TEXT, to -> LC00qzKjtwPTJe352hS..., body -> 😍
+INFO:spybot.api:event handler function yielded reply with type -> TEXT, to -> LC00..., body -> 😍
 INFO:requests.packages.urllib3.connectionpool:Starting new HTTPS connection (1): bot.sapp.ir
 INFO:spybot.api:sent message successfully
 
-INFO:spybot.api:event handler function yielded reply with type -> TEXT, to -> LC00qzKjtwPTJe352hS..., body -> 👍
+INFO:spybot.api:event handler function yielded reply with type -> TEXT, to -> LC00..., body -> 👍
 INFO:requests.packages.urllib3.connectionpool:Starting new HTTPS connection (1): bot.sapp.ir
 INFO:spybot.api:sent message successfully
 
