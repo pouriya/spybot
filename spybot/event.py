@@ -176,7 +176,7 @@ class _File(_Event):
 
 
     def _read_body(self, event):
-        return self._read(event, 'body')
+        return self._read(event, 'body', default=(None,))
 
 
     def _read_url(self, event):
