@@ -173,8 +173,7 @@ class Bot:
                 result = self.send_message(data)
                 return result
             except Exception as error:
-                error = error
-            self._handle_send_retry(error)
+                self._handle_send_retry(error)
 
 
     def _handle_send_retry(self, exception):
