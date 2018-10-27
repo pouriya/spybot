@@ -206,7 +206,7 @@ class Bot:
                         return (True, 200, None)
                     message = response['resultMessage']
                     logger.error('could not send message because {!r}'.format(message))
-                    return (False, staus_code, message)
+                    return (False, status_code, message)
                 except KeyError or json.decoder.JSONDecodeError:
                     logger.error('got error {!r} for send operation'.format(req.text))
                     return (False, req.status_code, 'unknown response {!r}'.format(req.text))
